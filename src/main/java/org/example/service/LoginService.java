@@ -1,26 +1,24 @@
-package de.uniks.stp25.service;
+package org.example.service;
 
-import de.uniks.stp25.App;
-import de.uniks.stp25.Main;
-import de.uniks.stp25.controller.LobbyController;
-import de.uniks.stp25.model.User;
+import org.example.App;
+import org.example.Main;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Objects;
 import java.util.Scanner;
 
+@Singleton
 public class LoginService {
 
-    private final ApiService apiService;
+    @Inject
+    ApiService apiService;
 
+    @Inject
     public LoginService() {
-        this.apiService = new ApiService();
-    }
-
-    public LoginService(ApiService apiService) {
-        this.apiService = apiService;
     }
 
     public String checkPassword(String password, String name) {
@@ -60,15 +58,15 @@ public class LoginService {
         }
     }
 
-    public LobbyController createAccount(App app, String name, String password) {
+    public boolean createAccount(String name, String password) {
         if (apiService.createUser(name, password)) {
-            return apiService.login(app, name, password);
+            return apiService.login(name, password);
         } else {
-            return null;
+            return false;
         }
     }
 
-    public LobbyController login(App app, String name, String password) {
-        return apiService.login(app, name, password);
+    public boolean login(App app, String name, String password) {
+        return apiService.login(name, password);
     }
 }

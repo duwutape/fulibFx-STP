@@ -1,17 +1,3 @@
-package org.example.modal;
+package org.example.model;
 
-public class User {
-    private String name;
-
-    public User(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-}
+public record User(String name, String password) {}

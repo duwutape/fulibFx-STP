@@ -4,43 +4,50 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.ControllerTest;
+import org.example.service.LobbyService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.testfx.api.FxAssert.verifyThat;
 
 @ExtendWith(MockitoExtension.class)
-public class SetupControllerTest extends ControllerTest {
+public class LobbyControllerTest extends ControllerTest {
+
+    @Spy
+    LobbyService lobbyService;
 
     @InjectMocks
-    LobbyController setupController;
+    LobbyController lobbyController;
 
     @Override
     public void start(Stage stage) throws Exception {
         super.start(stage);
-        app.show(setupController);
+        doReturn(List.of()).when(lobbyService).getOnline();
+        doReturn(true).when(lobbyService).logout(any());
+        app.show(lobbyController);
     }
 
     @Test
     public void test() {
         doReturn(new VBox()).when(app).show(any(), any());
+        // mock LobbyService
 
-        assertEquals("Ludo - Set up the game", app.stage().getTitle());
-
-        moveTo("2");
-        moveBy(0, -20);
-        press(MouseButton.PRIMARY);
-        release(MouseButton.PRIMARY);
-        clickOn("#startButton");
+        assertEquals("SettleTP - Lobby", app.stage().getTitle());
 
 
-        verify(app, times(1)).show("ingame", Map.of("playerAmount", 2));
+        clickOn("#logoutButton");
+
+        verify(app, times(1)).show("/");
 
     }
 

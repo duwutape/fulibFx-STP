@@ -1,8 +1,8 @@
 package org.example;
 
 import dagger.Component;
-import de.uniks.ludo.dagger.MainComponent;
-import de.uniks.ludo.dagger.MainModule;
+import org.example.dagger.MainComponent;
+import org.example.dagger.MainModule;
 
 import javax.inject.Singleton;
 
