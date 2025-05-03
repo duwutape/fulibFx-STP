@@ -26,6 +26,8 @@ public class App extends FulibFxApp {
             setTitlePattern("SettleTP - %s");
 
             registerRoutes(component.routes());
+            stage().setWidth(400);
+            stage().setHeight(400);
             show("");
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "An error occurred while starting the application: " + e.getMessage(), e);

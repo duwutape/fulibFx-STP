@@ -11,6 +11,7 @@ import org.example.service.LobbyService;
 import org.fulib.fx.annotation.controller.Controller;
 import org.fulib.fx.annotation.controller.Title;
 import org.fulib.fx.annotation.event.OnRender;
+import org.fulib.fx.annotation.param.Param;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -22,6 +23,7 @@ public class LobbyController {
     @Inject
     App app;
 
+    @Param("user")
     User user;
 
     @Inject

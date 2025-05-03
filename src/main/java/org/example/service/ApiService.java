@@ -15,8 +15,8 @@ public class ApiService {
         return true;
     }
 
-    public boolean login(String name, String password) {
-        return true;
+    public User login(String name, String password) {
+        return new User(name, password);
     }
 
     public boolean logout(User user) {

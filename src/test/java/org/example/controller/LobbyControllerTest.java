@@ -4,6 +4,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.ControllerTest;
+import org.example.model.User;
 import org.example.service.LobbyService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,22 +34,19 @@ public class LobbyControllerTest extends ControllerTest {
     public void start(Stage stage) throws Exception {
         super.start(stage);
         doReturn(List.of()).when(lobbyService).getOnline();
-        doReturn(true).when(lobbyService).logout(any());
-        app.show(lobbyController);
+        app.show(lobbyController, Map.of("user",new User("User", null)));
     }
 
     @Test
     public void test() {
-        doReturn(new VBox()).when(app).show(any(), any());
-        // mock LobbyService
+        doReturn(new VBox()).when(app).show(any());
+        doReturn(true).when(lobbyService).logout(any());
 
         assertEquals("SettleTP - Lobby", app.stage().getTitle());
-
 
         clickOn("#logoutButton");
 
         verify(app, times(1)).show("/");
-
     }
 
 }

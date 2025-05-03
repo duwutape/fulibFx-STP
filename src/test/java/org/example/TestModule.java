@@ -2,6 +2,7 @@ package org.example;
 
 import dagger.Module;
 import dagger.Provides;
+import org.example.model.User;
 import org.example.service.ApiService;
 
 @Module
@@ -12,8 +13,8 @@ public class TestModule {
         return new ApiService() {
 
             @Override
-            public boolean login(String name, String password) {
-                return false;
+            public User login(String name, String password) {
+                return new User(name, password);
             }
         };
     }

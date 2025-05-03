@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.App;
 import org.example.Main;
+import org.example.model.User;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -21,25 +22,25 @@ public class LoginService {
     public LoginService() {
     }
 
-    public String checkPassword(String password, String name) {
+    public int checkPassword(String password, String name) {
         if (password.equals(name)) {
-            return "Name und Passwort dürfen nicht gleich sein";
+            return 1;
         } else if (password.length() < 8) {
-            return "Passwort muss mindestens 8 Zeichen lang sein";
+            return 2;
         } else if (!password.matches(".*[A-Z].*")) {
-            return "Passwort muss mindestens eine Großbuchstaben enthalten";
+            return 3;
         } else if (!password.matches(".*[a-z].*")) {
-            return "Passwort muss mindestens einen Kleinbuchstaben enthalten";
+            return 4;
         } else if (!password.matches(".*\\d.*")) {
-            return "Passwort muss mintestens eine Ziffer enthalten";
+            return 5;
         } else if (!password.matches(".*[!@#$%^&*].*")) {
-            return "Passwort muss mindestens ein Sonderzeichen enthalten";
+            return 6;
         } else if (password.matches(".*\\s.*")) {
-            return "Passwort darf keine Leerzeichen enthalten";
+            return 7;
         } else if (inBlacklist(password)){
-            return "Passwort darf nicht auf der Blacklist stehen";
+            return 8;
         } else {
-            return "Passwort ok";
+            return 0;
         }
     }
 
@@ -58,15 +59,15 @@ public class LoginService {
         }
     }
 
-    public boolean createAccount(String name, String password) {
+    public User createAccount(String name, String password) {
         if (apiService.createUser(name, password)) {
             return apiService.login(name, password);
         } else {
-            return false;
+            return null;
         }
     }
 
-    public boolean login(App app, String name, String password) {
+    public User login(App app, String name, String password) {
         return apiService.login(name, password);
     }
 }

@@ -1,15 +1,10 @@
-package de.uniks.ludo;
+package org.example;
 
 import javafx.application.Platform;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import org.example.App;
-import org.example.DaggerTestComponent;
 import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
-import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +27,7 @@ public class AppTest extends ApplicationTest {
     public void test() {
         Platform.runLater(() -> app.stage().requestFocus());
         waitForFxEvents();
-
+        sleep(5000);
         clickOn("#nameField");
         write("Ash");
         press(KeyCode.TAB);

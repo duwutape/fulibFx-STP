@@ -48,7 +48,7 @@
             <TextField fx:id="nameField" layoutX="103.0" layoutY="161.0" maxWidth="200.0" prefWidth="200.0" promptText="username" />
             <Label layoutX="162.0" layoutY="191.0" text="Password:" />
             <PasswordField fx:id="passwordField" layoutX="103.0" layoutY="210.0" maxWidth="200.0" prefWidth="200.0" promptText="password" />
-            <Button fx:id="signInButton" layoutX="132.0" layoutY="250.0" mnemonicParsing="false" text="Sign In" />
+            <Button fx:id="signInButton" layoutX="132.0" layoutY="250.0" mnemonicParsing="false" onAction="#signInClick" text="Sign In" />
             <Button fx:id="signUpButton" layoutX="203.0" layoutY="250.0" mnemonicParsing="false" onAction="#signUpClick" text="Sign Up" />
             <Label fx:id="errorLabel" alignment="CENTER" layoutX="10.0" layoutY="310.0" prefHeight="18.0" prefWidth="380.0" textFill="#ff1b1b" visible="false" />
          </children>
